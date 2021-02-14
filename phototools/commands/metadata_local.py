@@ -59,4 +59,4 @@ class MetadataLocal(Command):
                 except:
                     sys.stderr.write('Skipping {}\n'.format(path))
 
-        self.output.write(json.dumps(data, indent=4, sort_keys=True, cls=Encoder))
+        self.output.write(json.dumps(data, indent=4, cls=Encoder))

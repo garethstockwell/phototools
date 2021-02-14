@@ -73,4 +73,4 @@ class MetadataGoogle(Command):
 
     def _execute(self):
         data = self.query()
-        self.output.write(json.dumps(data, indent=4, sort_keys=True))
+        self.output.write(json.dumps(data, indent=4))
