@@ -10,6 +10,7 @@ import sys
 from phototools.commands.check import Check
 from phototools.commands.metadata_google import MetadataGoogle
 from phototools.commands.metadata_local import MetadataLocal
+from phototools.commands.metadata_mac import MetadataMac
 
 def main(args=None):
 
@@ -19,6 +20,7 @@ def main(args=None):
     Check.register(subparsers)
     MetadataGoogle.register(subparsers)
     MetadataLocal.register(subparsers)
+    MetadataMac.register(subparsers)
 
     args = parser.parse_args()
 
