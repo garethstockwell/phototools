@@ -19,9 +19,7 @@ setup(
     ],
 
     install_requires=[
-        "google-api-python-client",
-        "Pillow",
-    ],
+        line.strip() for line in open("requirements.txt").readlines()],
 
     packages=["phototools"],
 
