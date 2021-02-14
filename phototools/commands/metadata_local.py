@@ -5,6 +5,7 @@ phototools.commands.metadata_local
 from json import JSONEncoder
 import json
 import os
+import sys
 
 from PIL.ExifTags import TAGS
 from PIL.TiffImagePlugin import IFDRational
@@ -49,10 +50,13 @@ class MetadataLocal(Command):
         for root, dnames, fnames in os.walk(self.args.path):
             for fname in fnames:
                 path = os.path.join(root, fname)
-                image = Image.open(path)
-                exif = image.getexif()
-                item = {TAGS.get(key): val for key, val in exif.items()}
-                item['path'] = path
-                data.append(item)
+                try:
+                    image = Image.open(path)
+                    exif = image.getexif()
+                    item = {TAGS.get(key): val for key, val in exif.items()}
+                    item['path'] = path
+                    data.append(item)
+                except:
+                    sys.stderr.write('Skipping {}\n'.format(path))
 
         self.output.write(json.dumps(data, indent=4, sort_keys=True, cls=Encoder))
